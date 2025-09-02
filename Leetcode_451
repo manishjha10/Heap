@@ -1,0 +1,31 @@
+class Solution {
+    public String frequencySort(String s) {
+        Map<Character , Integer> mp = new HashMap<>(); 
+        for(int i=0 ; i<s.length(); i++)
+        {
+            char ch  = s.charAt(i); 
+            mp.put(ch, mp.getOrDefault(ch,0)+1);
+        } 
+       
+       // max Heap min character rest 
+        PriorityQueue<Character> pq = new PriorityQueue<>((a,b) -> mp.get(b) - mp.get(a)); 
+         
+        pq.addAll(mp.keySet());                   // all key are add in pq.
+
+
+        StringBuilder sb = new StringBuilder();
+          
+            while(!pq.isEmpty()){ 
+
+            char ch = pq.poll();                // characte aega 
+            int ch_Count  = mp.get(ch);          // character kitne bar repaet hai vo aega 
+
+            for(int j=0; j<ch_Count; j++)
+            {
+               sb.append(ch);                     // same character append.
+            }
+        }
+        
+        return sb.toString(); 
+    }
+} 
